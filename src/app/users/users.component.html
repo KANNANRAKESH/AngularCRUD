@@ -1,0 +1,148 @@
+<div class="container mt-2">
+  <div class="tab-content" id="myTabContent ">
+    <div class="d-flex justify-content-between">
+      <div
+        class="tab-pane fade show active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        <form
+          class="card shadow p-5 mb-5 mt-3"
+          [formGroup]="userForm"
+          (ngSubmit)="submitForm()"
+        >
+          <h2 class="text-center text-danger fw-bold">Angular CRUD</h2>
+          <div class="row d-flex mt-3">
+            <div class="form-group col-md-6">
+              <label for="formGroupExampleInput">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="Name"
+                formControlName="Name"
+                id="formGroupExampleInput"
+                placeholder="Enter Name"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="formGroupExampleInput2">Phone Number</label>
+              <input
+                type="number"
+                class="form-control"
+                name="PhoneNo"
+                formControlName="PhoneNo"
+                id="formGroupExampleInput2"
+                placeholder="Enter Phone No"
+              />
+            </div>
+          </div>
+          <div class="row mt-2 d-flex btns">
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-success m-1">Add</button>
+
+              <button type="reset" class="btn btn-secondary m-1">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="tab-pane fade show active card shadow w-50 p-4"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">S.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">PhoneNo</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <th scope="row">{{ user.id }}</th>
+              <th>{{ user.Name }}</th>
+              <td>{{ user.PhoneNo }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary m-1"
+                  (click)="getByIdUser(user.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger m-1"
+                  (click)="deleteuser(user.id)"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Success Modal -->
+  <div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="successModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Success</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="successModalBody">
+          <!-- Success message will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="errorModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="errorModalBody">
+          <!-- Error message will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
